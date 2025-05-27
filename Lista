@@ -44,3 +44,51 @@ $joao->mes = 12;
 $joao->nomeFaculdade = "Guairaca";
 echo $joao->informarnome(),$joao->Idade(),$joao->informarFaculdade(). "\n";
 
+
+//3
+
+
+    class Mercado{
+        public $nome;
+        public $item;
+        public $estoque;
+        public $quantidade;
+
+        public function RegistrarCompra(){
+            $item = $this->item;
+            $estoque  = $this->estoque;
+            $quantidade = $this->quantidade;
+            $novoestoque = $estoque - 1;
+            return "comprou $quantidade $item e agora tem $novoestoque no estoque ";
+            
+        }
+    }
+
+    class Caixa extends Mercado{
+        public $dinheiro;
+        public $cartao;
+        public $cheque;
+
+        public function MtPagamento(){
+            $this->dinheiro;
+            $this->cartao;
+            $this->cheque;
+        }
+    }
+
+$comprador = new Caixa();
+$comprador-> nome = readline("Nome: ");
+$comprador->item = "Leite";
+$comprador->estoque = 10;
+$comprador->quantidade = "1";
+echo $comprador->nome ." ". $comprador->RegistrarCompra()."\n";
+
+$opcao = readline("Informe o metodo de Pagamento: ");
+    if($opcao == "dinheiro"){
+        echo $comprador->dinheiro="10 Reais em dinheiro";
+
+    }elseif($opcao == "cartao"){
+        echo $comprador->cartao="10 Reais no cartao";
+    }else{
+        echo $comprador->cheque= "10 Reais no cheque";
+    }
