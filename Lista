@@ -53,6 +53,7 @@ echo $joao->informarnome(),$joao->Idade(),$joao->informarFaculdade(). "\n";
         public $item;
         public $estoque;
         public $quantidade;
+        public $valor;
 
         public function RegistrarCompra(){
             $item = $this->item;
@@ -79,11 +80,12 @@ echo $joao->informarnome(),$joao->Idade(),$joao->informarFaculdade(). "\n";
             $this->cheque;
         }
     }
-
+while(true){
 $comprador = new Caixa();
-$comprador-> nome = readline("Nome: ");
+$comprador-> nome = readline("Nome: \n");
 $comprador->item = "Leite";
 $comprador->estoque = 10;
+$comprador->valor = readline("Digite o valor: \n");
 $comprador->quantidade = readline("Quantidade de $comprador->item \n");
 echo $comprador->nome ." ". $comprador->RegistrarCompra()."\n";
 
@@ -91,11 +93,16 @@ echo $comprador->nome ." ". $comprador->RegistrarCompra()."\n";
 if($comprador->RegistrarCompra() != "Estoque esgotado"){
 $opcao = readline("Informe o metodo de Pagamento: ");
     if($opcao == "dinheiro"){
-        echo $comprador->dinheiro="10 Reais em dinheiro";
-
+        echo $comprador->dinheiro="$comprador->valor Reais em dinheiro\n";
+        return 0 ;
     }elseif($opcao == "cartao"){
-        echo $comprador->cartao="10 Reais no cartao";
+        echo $comprador->cartao="$comprador->valor  Reais no cartao\n";
+        return 0 ;
+    }elseif($opcao == "cheque"){
+        echo $comprador->cheque= "$comprador->valor  Reais no cheque\n";
+        return 0;
     }else{
-        echo $comprador->cheque= "10 Reais no cheque";
+        echo "Comando nao existe, tente novamente! \n";
     }
+}
 }
