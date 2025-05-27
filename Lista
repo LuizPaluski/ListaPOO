@@ -1,0 +1,46 @@
+<?php
+//1
+	class Pessoa extends Universidade{
+		public $nome;
+		public $ano;
+		public $dia;
+		public $mes;
+		public function informarnome(){
+			return $this->nome;
+		}
+
+		public function Idade(){
+			$ano = $this->ano;
+			$dia = $this->dia;
+			$mes = $this->mes;
+			$calculo =  2025 - $ano;
+			return " Tem $calculo anos e nasceu no dia, $dia/$mes/$ano ";
+		}
+	}
+
+//2
+
+    class Universidade{
+        public $nomeFaculdade;
+
+        public function informarFaculdade(){
+            return "E trabalha na faculdade: ". $this->nomeFaculdade;
+        }
+    }
+
+$luiz = new Pessoa();
+$luiz->nome = "Luiz";
+$luiz->ano = 2005;
+$luiz->dia = 11;
+$luiz->mes = 01;
+$luiz->nomeFaculdade = "UTFPR";
+echo $luiz->informarnome(),$luiz->Idade(),$luiz->informarFaculdade(). "\n";
+
+$joao = new Pessoa();
+$joao->nome = "Joao";
+$joao->ano = 2004;
+$joao->dia = 25;
+$joao->mes = 12;
+$joao->nomeFaculdade = "Guairaca";
+echo $joao->informarnome(),$joao->Idade(),$joao->informarFaculdade(). "\n";
+
