@@ -106,3 +106,19 @@ $opcao = readline("Informe o metodo de Pagamento: ");
     }
 }
 }
+
+    class Biblioteca{
+        public $id;
+        public $armazenamento;
+        public $status;
+
+
+}
+
+    class PessoaBiblio extends Biblioteca{
+        public $nome;
+        public $RegistrarCompra;
+
+    }
+
+//ultilziar enset para remover o id usado 
