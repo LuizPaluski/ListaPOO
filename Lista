@@ -58,12 +58,16 @@ echo $joao->informarnome(),$joao->Idade(),$joao->informarFaculdade(). "\n";
             $item = $this->item;
             $estoque  = $this->estoque;
             $quantidade = $this->quantidade;
-            $novoestoque = $estoque - 1;
-            return "comprou $quantidade $item e agora tem $novoestoque no estoque ";
+            $novoestoque = $estoque - $quantidade;
+            if($novoestoque <= 0){
+                return "Estoque esgotado";
+                
+            }else{
+                return "comprou $quantidade $item e agora tem $novoestoque no estoque ";
             
         }
     }
-
+}
     class Caixa extends Mercado{
         public $dinheiro;
         public $cartao;
@@ -80,9 +84,11 @@ $comprador = new Caixa();
 $comprador-> nome = readline("Nome: ");
 $comprador->item = "Leite";
 $comprador->estoque = 10;
-$comprador->quantidade = "1";
+$comprador->quantidade = readline("Quantidade de $comprador->item \n");
 echo $comprador->nome ." ". $comprador->RegistrarCompra()."\n";
 
+
+if($comprador->RegistrarCompra() != "Estoque esgotado"){
 $opcao = readline("Informe o metodo de Pagamento: ");
     if($opcao == "dinheiro"){
         echo $comprador->dinheiro="10 Reais em dinheiro";
@@ -92,3 +98,4 @@ $opcao = readline("Informe o metodo de Pagamento: ");
     }else{
         echo $comprador->cheque= "10 Reais no cheque";
     }
+}
