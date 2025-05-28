@@ -109,60 +109,7 @@ $opcao = readline("Informe o metodo de Pagamento: ");
 
 
 
-    class Biblioteca{
-        public $id = 1;
-        public $estoque = 1;
-        public $autor;
-        public $numeropg;
-        public $status = true || false;
-        public $valor;
 
-        /*public function __construct($id, $autor, $numeropg, $status, $valor){
-            $this->id = $id;
-            $this->autor = $autor;
-            $this->numeropg = $numeropg;
-            $this->status = $status;
-            $this->valor = $valor;
-        }*/
-        public function verificador(){
-            $this->id;
-            $estoque = $this->estoque;
-            if($estoque <= 0 ){
-                return "Fora de estoque!\n";
-            }else{
-                return "estoque disponivel";
-            }
-        }
-
-
-}
-
-    class PessoaBiblio extends Biblioteca{
-        public $nome;
-        public $endereco;
-        public $email;
-        public $telefone;
-
-        public function __constructor($nome, $endereco, $email, $telefone){
-            $this->nome = $nome;
-            $this->endereco = $endereco;
-            $this->email = $email;
-            $this->telefone = $telefone;
-            return "Nome: $nome, email: $email, endereco: $endereco, numero: $telefone \n";
-        }
-
-}
-
-$nome = readline("Digite o nome do comprador: \n");
-$endereco = readline("Digite o endereco: \n");
-$email = readline("Digite o email: \n");
-$telefone = readline("Digite o telefone: \n");
-
-
-$Luiz = new PessoaBiblio($nome, $endereco, $email, $telefone);
-$luiz->id = 1;
-$luiz->preco = "10";
-echo $luiz->preco;
 
 
 //ultilziar enset para remover o id usado 

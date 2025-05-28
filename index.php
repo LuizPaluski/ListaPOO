@@ -90,53 +90,48 @@
             echo "$nome registrado. \n";
             echo "Dados: Email:$email, telefone:$telefone, endereco:$endereco\n";
         }
-
-       
-
 }
-
 function RegistrarPessoa(){
     $luiz = new PessoaBiblio;
     $luiz->nome = readline("Digite o nome: \n");
     $luiz->endereco = readline("Digite o endereco: \n");
     $luiz->email = readline("Digite o email: \n");
     $luiz->telefone = readline("Digite o telefone: \n");
-
+    $luiz->AlugouLivro();
     echo $luiz->registro();
 }
-
-
 function RegistrarCompra(){
-    $Sebo = new Biblioteca;
-    $Sebo->id = readline("Digite o ID do livro: \n");
-        switch($Sebo->id){
+    RegistrarPessoa();
+    $luiz = new Biblioteca;
+    $luiz->id = readline("Digite o ID do livro: \n");
+        switch($luiz->id){
         case 1:
-            $Sebo->valor = 22.00;
+            $luiz->valor = 22.00;
             break;
         case 2:
-            $Sebo->valor = 1.00;
+            $luiz->valor = 1.00;
             break;
         case 3:
-            $Sebo->valor = 97.00;
+            $luiz->valor = 97.00;
             break;
         default:
             echo "ID invalido, tente novamente\n";
             return registrarcompra();
     }
-    $Sebo->estoque = 2;
-    switch($Sebo->id){
+    $luiz->estoque = 2;
+    switch($luiz->id){
         case 1:
-            $Sebo->numeropg = 10;
+            $luiz->numeropg = 10;
             break;
         case 2:
-            $Sebo->numeropg = 432;
+            $luiz->numeropg = 432;
             break;
         case 3:
-            $Sebo->numeropg = 7612;
+            $luiz->numeropg = 7612;
             break;
     }
-    echo $Sebo->livros();
-    echo $Sebo->verificador();
+    echo $luiz->livros();
+    echo $luiz->verificador();
     while(true){
     return registrarcompra();
 }
