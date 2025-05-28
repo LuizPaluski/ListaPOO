@@ -33,15 +33,17 @@
             
         }
         public function verificador(){
-            $this->id;
-            $estoque = $this->estoque;
-            $novoestoque = $estoque - 1;
-            if($novoestoque <= 0 ){
-                return "Fora de estoque!\n";
+            $this->VerificarID();
+            if($this->VerificarID() == "ID invalido"){
+                return "Tente novamente\n";
             }else{
-                $this->estoque = $novoestoque;
-                return "estoque disponivel\n";
+                return "ID valido\n";
             }
+
+            if(isset($this->id)){
+                unset($this->id);
+            }
+            return "ID removido com sucesso\n";
         }
 
         public function AssociarId($id){
@@ -101,7 +103,6 @@ function RegistrarPessoa(){
     echo $luiz->registro();
 }
 function RegistrarCompra(){
-    RegistrarPessoa();
     $luiz = new Biblioteca;
     $luiz->id = readline("Digite o ID do livro: \n");
         switch($luiz->id){
@@ -133,6 +134,17 @@ function RegistrarCompra(){
     echo $luiz->livros();
     echo $luiz->verificador();
     while(true){
-    return registrarcompra();
+        return RegistrarCompra();
+    }
 }
+
+while(true){
+    $opcao = readline("Digite 1 para registrar pessoa ou 2 para registrar compra: \n");
+    if($opcao == 1){
+        RegistrarPessoa();
+    }elseif($opcao == 2){
+        RegistrarCompra();
+    }else{
+        echo "Opcao invalida, tente novamente.\n";
+    }
 }
