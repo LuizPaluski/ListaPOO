@@ -1,12 +1,12 @@
 <?php
-
-$estoque = 1;
    class Biblioteca{
+
         public $id;
-        public $autor = [   
-        ];
+        public $autor = [];
         public $numeropg;
         public $valor;
+
+        public $estoque = 1;
 
         private function VerificarEstoque(){
             global $estoque;
@@ -17,12 +17,9 @@ $estoque = 1;
                 return true;
             }
         }
-
         public function livros(){
             $this->VerificarID();
             $this->IdDisponivel();
-
-
             if(!$this->VerificarEstoque()){
                 return "Livro ID: $this->id, Fora de estoque!\n";
             }else{
@@ -34,7 +31,6 @@ $estoque = 1;
             }
             
         }
-    
         private function VerificarID(){
             $id = $this->id;
               $id = [
@@ -47,7 +43,6 @@ $estoque = 1;
             }else{
                 return "ID invalido";
             }
-            
         }
         private function IdDisponivel(){
             $id = $this->id;
@@ -57,8 +52,7 @@ $estoque = 1;
                 return "ID nao disponivel";
             }
         }
-
-        public function AssociarId($id){
+        public function AssociarId(&$id){
             $this->id = $id;
             switch($this->id){
                 case 1:
@@ -76,7 +70,6 @@ $estoque = 1;
             return $this->autor;
         }
    }
-
     class PessoaBiblio extends Biblioteca{
         public $nome;
         public $endereco;
@@ -94,6 +87,21 @@ $estoque = 1;
             echo "Dados: Email:$email, telefone:$telefone, endereco:$endereco\n";
         }
 }
+
+class RegistarLivro extends Biblioteca{
+    public $nome;
+    public $id;
+    public $valor;
+    public $numeropg;
+
+    public function RegistrarLivro(){
+        $this->nome = readline("Digite o nome do livro: \n");
+        $this->id = (int)readline("Digite o ID do livro: \n");
+        $this->valor = (float)readline("Digite o valor do livro: \n");
+        $this->numeropg = (int)readline("Digite o numero de paginas do livro: \n");
+        echo "Livro registrado: $this->nome, ID: $this->id, Valor: R$$this->valor, Paginas: $this->numeropg\n";
+    }
+}
 function RegistrarPessoa(){
     $luiz = new PessoaBiblio;
     $luiz->nome = readline("Digite o nome: \n");
@@ -102,8 +110,6 @@ function RegistrarPessoa(){
     $luiz->telefone = readline("Digite o telefone: \n");
     echo $luiz->registro();
 }
-
-
 function RegistrarCompra(){
     $luiz = new Biblioteca;
     $luiz->id = (int)readline("Digite o ID do livro: \n");
@@ -139,8 +145,6 @@ function RegistrarCompra(){
         RegistrarCompra();
     }
 }
-
-
 while(true){
     $opcao = readline("Digite 1 para registrar pessoa ou 2 para registrar compra: \n");
     if($opcao == 1){
@@ -151,3 +155,6 @@ while(true){
         echo "Opcao invalida, tente novamente.\n";
     }
 }
+
+
+
