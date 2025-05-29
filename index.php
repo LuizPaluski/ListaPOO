@@ -1,34 +1,35 @@
 <?php
+
+$estoque = 1;
    class Biblioteca{
         public $id;
-        public $estoque = 1;
-        public $autor = [
-           
+        public $autor = [   
         ];
         public $numeropg;
         public $valor;
 
         private function VerificarEstoque(){
-            if($this->estoque <= 0){
-                return "Fora de estoque!\n";
+            global $estoque;
+            if($estoque <= 0){
+                return false;
             }else{
-                $this->estoque--;
-                return "Em estoque.\n";
+                $estoque--;
+                return true;
             }
         }
 
         public function livros(){
             $this->VerificarID();
             $this->IdDisponivel();
-            $this->VerificarEstoque();
-            $valor = $this->valor;
-            $paginas = $this->numeropg;
-            $estoque = $this->VerificarEstoque();
 
-            if($this->VerificarEstoque() <= 0){
+
+            if(!$this->VerificarEstoque()){
                 return "Livro ID: $this->id, Fora de estoque!\n";
             }else{
+                $valor = $this->valor;
+                $paginas = $this->numeropg;
                 $autor = $this->AssociarId($this->id);
+                $estoque = $this->VerificarEstoque() ?: "Disponivel";
                 return "$autor, Total de paginas: $paginas, Valor: R$$valor, Estoque: $estoque \n";
             }
             
@@ -81,17 +82,6 @@
         public $endereco;
         public $email;
         public $telefone;
-        
-        public function AlugouLivro(){
-            $nome = $this->nome;
-            $id = $this->id;
-            $estoque = $this->estoque;
-            if($estoque > 0){
-                return "$nome alugou o livro ID: $id\n";
-            }else{
-                return "Livro ID: $id, Fora de estoque!\n";
-            }
-        }
 
         public function Registro(){
             $nome = $this->nome;
@@ -110,7 +100,6 @@ function RegistrarPessoa(){
     $luiz->endereco = readline("Digite o endereco: \n");
     $luiz->email = readline("Digite o email: \n");
     $luiz->telefone = readline("Digite o telefone: \n");
-    $luiz->AlugouLivro();
     echo $luiz->registro();
 }
 
