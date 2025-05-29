@@ -1,49 +1,60 @@
 <?php
    class Biblioteca{
-        public $id ;
-        public $estoque = 2;
+        public $id;
+        public $estoque = 1;
         public $autor = [
            
         ];
         public $numeropg;
         public $valor;
 
+        private function VerificarEstoque(){
+            if($this->estoque <= 0){
+                return "Fora de estoque!\n";
+            }else{
+                $this->estoque--;
+                return "Em estoque.\n";
+            }
+        }
+
         public function livros(){
             $this->VerificarID();
-            $this->AssociarId($this->id);
-            $estoque = $this->estoque;
+            $this->IdDisponivel();
+            $this->VerificarEstoque();
             $valor = $this->valor;
             $paginas = $this->numeropg;
-            
-            if($estoque > 0){
-                $autor = $this->AssociarId($this->id);
-                return "$autor, Total de paginas: $paginas, Valor: R$$valor, Estoque: $estoque\n";
-            }else{
-                return "Livro ID: $this->id, Valor: R$$valor, Fora de estoque!\n";
-            }
-        }
-        private function VerificarID(){
-            $this->id;
-            if($this->id != $this->id){
-                return "ID invalido";
-            }else{
-                return "ID valido";
-                
-            }
-            
-        }
-        public function verificador(){
-            $this->VerificarID();
-            if($this->VerificarID() == "ID invalido"){
-                return "Tente novamente\n";
-            }else{
-                return "ID valido\n";
-            }
+            $estoque = $this->VerificarEstoque();
 
-            if(isset($this->id)){
-                unset($this->id);
+            if($this->VerificarEstoque() <= 0){
+                return "Livro ID: $this->id, Fora de estoque!\n";
+            }else{
+                $autor = $this->AssociarId($this->id);
+                return "$autor, Total de paginas: $paginas, Valor: R$$valor, Estoque: $estoque \n";
             }
-            return "ID removido com sucesso\n";
+            
+        }
+    
+        private function VerificarID(){
+            $id = $this->id;
+              $id = [
+                1 => "ID: 1",
+                2 => "ID: 2",
+                3 => "ID: 3"
+            ];
+            if(isset($id[$this->id])){
+                return "Esse ID existe: " . $id[$this->id];
+            }else{
+                return "ID invalido";
+            }
+            
+        }
+        private function IdDisponivel(){
+            $id = $this->id;
+            if($id == 1 || $id == 2 || $id == 3){
+                return "ID disponivel";
+            }else{
+                return "ID nao disponivel";
+            }
         }
 
         public function AssociarId($id){
@@ -102,9 +113,11 @@ function RegistrarPessoa(){
     $luiz->AlugouLivro();
     echo $luiz->registro();
 }
+
+
 function RegistrarCompra(){
     $luiz = new Biblioteca;
-    $luiz->id = readline("Digite o ID do livro: \n");
+    $luiz->id = (int)readline("Digite o ID do livro: \n");
         switch($luiz->id){
         case 1:
             $luiz->valor = 22.00;
@@ -117,26 +130,27 @@ function RegistrarCompra(){
             break;
         default:
             echo "ID invalido, tente novamente\n";
-            return registrarcompra();
+            return 0;
     }
-    $luiz->estoque = 2;
     switch($luiz->id){
         case 1:
             $luiz->numeropg = 10;
+            
             break;
         case 2:
             $luiz->numeropg = 432;
+            
             break;
         case 3:
             $luiz->numeropg = 7612;
             break;
     }
     echo $luiz->livros();
-    echo $luiz->verificador();
     while(true){
-        return RegistrarCompra();
+        RegistrarCompra();
     }
 }
+
 
 while(true){
     $opcao = readline("Digite 1 para registrar pessoa ou 2 para registrar compra: \n");
