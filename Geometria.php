@@ -59,11 +59,16 @@ while(true){
 
 function QuadradoCalculo(){
     $forma = new Retangulo();
+    $forma->largura = readline("Digite a largura: \n");
+    $forma->altura = readline("Digite a altura: \n");
+    echo "Ele e um:". $forma->eumquadrado();
     echo  "A area do objeto e:". $forma->getAreaQ();
 }
 
 function TrianguloCaculo(){
 $forma = new Triangulo();
+$forma->largura = readline("Digite a largura: \n");
+$forma->altura = readline("Digite a altura: \n");
 echo "A area do objeto e: " . $forma->getAreaT() . "\n";
 echo "O tipo do triangulo e: " . $forma->tipoTriangulo() . "\n";
 }
