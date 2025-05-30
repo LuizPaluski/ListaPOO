@@ -4,7 +4,7 @@
         public $largura;
         public $altura;
 
-        public function calcularArea(){
+        private function calcularArea(){
             return $this->largura * $this->altura;
         }
         public function getArea(){
@@ -23,7 +23,7 @@
                 return "Triangulo Escaleno";
             }
         }
-        public function getAreaT(){
+        public function getArea(){
             return parent::getArea() / 2;
         }
     }
@@ -37,15 +37,15 @@
                 return "Retangulo";
             }
         }
-        public function getAreaQ(){
-            parent::getArea();
+        public function getArea(){
+            return parent::getArea();
         }
     }
 
 while(true){
     echo "1. Verificar Area e tipo do triangulo. \n";
-    echo "2. Verificar Area e se e quadrado.\n";
-    $opcao = readline("Digite Sua Opcao: 1 ou 2\n");
+    echo "2. Verificar Area e se e quadrado. \n";
+    $opcao = readline("Digite Sua Opcao: 1 ou 2 \n");
     switch($opcao){
         case 1:
             return TrianguloCaculo();
@@ -61,15 +61,15 @@ function QuadradoCalculo(){
     $forma = new Retangulo();
     $forma->largura = readline("Digite a largura: \n");
     $forma->altura = readline("Digite a altura: \n");
-    echo "Ele e um:". $forma->eumquadrado();
-    echo  "A area do objeto e:". $forma->getAreaQ();
+    echo  "A area do objeto e: ". $forma->getArea(). "\n";
+    echo "Ele e um:". $forma->eumquadrado(). "\n";
 }
 
 function TrianguloCaculo(){
 $forma = new Triangulo();
 $forma->largura = readline("Digite a largura: \n");
 $forma->altura = readline("Digite a altura: \n");
-echo "A area do objeto e: " . $forma->getAreaT() . "\n";
+echo "A area do objeto e: " . $forma->getArea() . "\n";
 echo "O tipo do triangulo e: " . $forma->tipoTriangulo() . "\n";
 }
 
